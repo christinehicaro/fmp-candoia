@@ -1,0 +1,24 @@
+{
+  "name": "fmp-candoia",
+  "productName": "FMP Candoia",
+  "version": "1.0.0",
+  "description": "fmp candoia app",
+  "main": "home.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/christinehicaro/fmp-candoia.git"
+  },
+  "author": "Christine Hicaro",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/christinehicaro/fmp-candoia/issues"
+  },
+  "homepage": "https://github.com/christinehicaro/fmp-candoia#readme",
+  "icon": {
+    "type": "fa",
+    "name": "asterisk"
+  }
+}
