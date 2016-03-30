@@ -1,18 +1,52 @@
-console.log("hello world");
+'use strict';
+$(window).load(function() {
+  let scm = new ColorScheme;
+  scm.from_hue(21).scheme('triade').distance(0.1).add_complement(false).variation('pastel').web_safe(true);
+  let colors = scm.colors();
+  let instance = api.instance.get();
 
-api.store.put("mySecretKey", 6000);
+  let json = api.boa.run('boa-script.boa');
+  $('#loading').hide();
+  $('#content').show();
 
-var results = api.boa.esxec("# How many committers are in each project?" +
-"p: Project = input;" +
-"counts: output sum[string] of int;" +
+  let canvas = $('#chart-output').get(0).getContext("2d");
+  let chartData = [];
+  let count = 0;
 
-"committers: map[string] of bool;" +
+  for(let index in json.DEVs) {
+    count++;
+    $('#numToShow').append(`<option value="${count}"> ${count} </option>`);
+    chartData.push({
+        label: index,
+        value: json.methods[index],
+        color: '#' + _.sample(colors)
+    });
+  }
 
-"visit(p, visitor {" +
-	"before node: Revision ->" +
-		"if (!haskey(committers, node.committer.username)) {" +
-			"committers[node.committer.username] = true;" +
-			"counts[p.id] << 1;" +
-		"}" +
-"});"
-);
+  $('#numToShow').change(function() {
+    $('#output').html('<canvas id="chart-output"> </canvas>');
+    canvas = $('#chart-output').get(0).getContext('2d');
+    display($('#numToShow').val());
+  });
+
+  chartData = _.sortBy(chartData, function(line) {
+    return Number(-line.value);
+  });
+
+  display(1);
+
+  $('#app-title').html(`Number of Times a Method is Used on ${instance.repos.name}`);
+
+  function display(num) {
+    let limitedData = _.first(chartData, num);
+
+    $('#table-output-body').html('');
+    _.each(limitedData, function(element, index, list) {
+      let num = index + 1;
+      $('#table-output-body').append(`<tr><td> ${num} </td> <td> ${element.label} </td> <td> ${element.value} </td> </tr>`)
+    });
+
+    let outputChart = new Chart(canvas).Pie(limitedData, {responsive: true});
+  }
+
+});

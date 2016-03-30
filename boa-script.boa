@@ -1,13 +1,11 @@
-# How many committers are in each project?
+# get projects stats
 p: Project = input;
-counts: output sum[string] of int;
 
-committers: map[string] of bool;
+methods : output of sum[string] of int;
 
 visit(p, visitor {
-	before node: Revision ->
-		if (!haskey(committers, node.committer.username)) {
-			committers[node.committer.username] = true;
-			counts[p.id] << 1;
-		}
+    before methodType : Method -> {
+        if (methodType != "")
+          	methods[methodType.name] << 1;
+    }
 });
