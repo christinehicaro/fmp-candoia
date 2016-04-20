@@ -1,52 +1,38 @@
-'use strict';
 $(window).load(function() {
-  let scm = new ColorScheme;
-  scm.from_hue(21).scheme('triade').distance(0.1).add_complement(false).variation('pastel').web_safe(true);
-  let colors = scm.colors();
-  let instance = api.instance.get();
+   "use strict";
 
   let json = api.boa.run('boa-script.boa');
   $('#loading').hide();
   $('#content').show();
-
-  let canvas = $('#chart-output').get(0).getContext("2d");
-  let chartData = [];
   let count = 0;
+  let labels = [];
+  let dataset = [];
 
-  for(let index in json.DEVs) {
+  for (let index in json.methodDetails)
+  {
     count++;
-    $('#numToShow').append(`<option value="${count}"> ${count} </option>`);
-    chartData.push({
-        label: index,
-        value: json.methods[index],
-        color: '#' + _.sample(colors)
-    });
+    let label = $('#table-output-body').append(`<tr><td> ${count} </td> <td> ${index} </td> <td> ${json.methodDetails[index]} </td> </tr>`)
+    labels.push(index);
+    dataset.push(json.methodDetails[index]);
   }
 
-  $('#numToShow').change(function() {
-    $('#output').html('<canvas id="chart-output"> </canvas>');
-    canvas = $('#chart-output').get(0).getContext('2d');
-    display($('#numToShow').val());
-  });
+  let chartData =
+  {
+			labels: labels,
+			datasets: [{
+			fillColor: '#ff8080',
+			strokeColor: '#bf6060',
+			data: dataset
+			}]
+	}
 
-  chartData = _.sortBy(chartData, function(line) {
-    return Number(-line.value);
-  });
+  let canvas = document.createElement('canvas');
+  canvas.setAttribute('width', '400px');
+  canvas.setAttribute('height', '300px');
+  canvas.id = "chart-output";
+  $('#content').prepend(canvas);
 
-  display(1);
-
-  $('#app-title').html(`Number of Times a Method is Used on ${instance.repos.name}`);
-
-  function display(num) {
-    let limitedData = _.first(chartData, num);
-
-    $('#table-output-body').html('');
-    _.each(limitedData, function(element, index, list) {
-      let num = index + 1;
-      $('#table-output-body').append(`<tr><td> ${num} </td> <td> ${element.label} </td> <td> ${element.value} </td> </tr>`)
-    });
-
-    let outputChart = new Chart(canvas).Pie(limitedData, {responsive: true});
-  }
+  let ctx = canvas.getContext('2d');
+  new Chart(ctx).Bar(chartData, { 'responsive': true, });
 
 });

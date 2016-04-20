@@ -1,3 +1,15 @@
 .container{
   margin: 16px;
 }
+.things {
+  width: 90%;
+  margin: 8px auto;
+}
+table {
+  width : 100%;
+}
+table td, table th {
+  text-align: left;
+  padding: 4px;
+}
+#status{font-size: 30px;}

@@ -6,48 +6,23 @@
       FMP Candoia App
     </title>
     <link rel="stylesheet" type="text/css" href="style.css">
-    <style>
-      .things {
-        width: 90%;
-        margin: 8px auto;
-      }
-      table {
-        width : 100%;
-      }
-      table td, table th {
-        text-align: left;
-        padding: 4px;
-      }
-      </style>
   </header>
 
+
   <body>
+    <div class='things'>
+      <div id='loading'>
+        <h1><span id='status'>Please wait while the boa query runs</span></h1>
+      </div>
 
-      <div class='things'>
-        <div id='loading'>
-          <i class='fa fa-cog fa-spin'></i>
-          <span id='status'>Running Boa Query</span>
-        </div>
-
-        <div id='content' hidden="hidden">
-          <h3 id='app-title'> Number of Times a Method is Used </h3>
-          <div id='output'>
-            <canvas id="chart-output"> </canvas>
-          </div>
-          <div id='controls'>
-            <form>
-              <label for="numToShow">Number of methods shown</label>
-              <select id='numToShow'>
-              </select>
-            </form>
-          </div>
+      <div id='content' hidden="hidden">
           <div id='table-output'>
             <table style="">
               <thead>
                 <tr>
                   <th></th>
-                  <th>Method</th>
-                  <th># of times used</th>
+                  <th>Method Name</th>
+                  <th># times called</th>
                 </tr>
               </thead>
               <tbody id='table-output-body'>
@@ -57,11 +32,10 @@
           </div>
         </div>
       </div>
-      <script src="../../shared/jquery.min.js"></script>
-      <script src="../../shared/chart.min.js"></script>
-      <script src="../../shared/underscore.min.js"></script>
-      <script src="./lib/color-scheme.min.js"></script>
-      <script src="./main.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+      <!-- <script src="../../shared/chart.min.js"></script>
+      <script src="../../shared/underscore.min.js"></script>-->
+      <script src="./script.js"></script>
 
   </body>
 
