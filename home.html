@@ -6,36 +6,52 @@
       FMP Candoia App
     </title>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="script.js"></script>
   </header>
 
 
   <body>
+
+  <h1 id = "title"><center>Number of Times a Method is Called</center></h1>
+
     <div class='things'>
       <div id='loading'>
-        <h1><span id='status'>Please wait while the boa query runs</span></h1>
+        <h1><center>Please wait while the boa query runs...</center></h1>
       </div>
 
-      <div id='content' hidden="hidden">
+      <div id='content'>
+        <center>
           <div id='table-output'>
-            <table style="">
-              <thead>
-                <tr>
-                  <th></th>
-                  <th>Method Name</th>
-                  <th># times called</th>
-                </tr>
-              </thead>
-              <tbody id='table-output-body'>
-
-              </tbody>
-            </table>
+           <table style="width:40%" >
+             <center><tbody id='table-output-body'>
+               <tr>
+                 <strong><th><center><h2>Methods in this Project</h2></center></th><strong>
+               </tr>
+             </tbody></center>
+           </table>
           </div>
-        </div>
+        </center>
+        <center>
+          <div id = "choose">
+            <br>
+            <br>
+            <h3> Thank you for waiting. Now please enter a method name from the list above to see how many times it has been called in this project: </h3>
+            <form method = "GET">
+                <input type = "text" id = "searchbar" name = "search" style = "width: 100px" value = "">
+                <input type="button"  height = "30" width = "30" value = "Go" onClick = "insertInput()">
+            </form>
+            <p id = results>
+            </p>
+          </div>
+
+
+          </div>
+        </center>
       </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-      <!-- <script src="../../shared/chart.min.js"></script>
-      <script src="../../shared/underscore.min.js"></script>-->
-      <script src="./script.js"></script>
+    </div>
+
+    <script src="./script.js"></script>
 
   </body>
 

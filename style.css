@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Poiret+One);
+
 .container{
   margin: 16px;
 }
@@ -5,11 +7,16 @@
   width: 90%;
   margin: 8px auto;
 }
-table {
-  width : 100%;
-}
 table td, table th {
   text-align: left;
   padding: 4px;
 }
-#status{font-size: 30px;}
+#status{font-size: 20px;}
+#title{font-size: 40px;
+       color: navy;}
+#table-title{font-size: 30px;}
+table{width: 60%;
+      height: 100px;
+      overflow: scroll;
+      border: 20px;
+      border-color: black;}

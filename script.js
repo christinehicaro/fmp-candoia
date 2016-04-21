@@ -1,38 +1,36 @@
-$(window).load(function() {
-   "use strict";
+'use strict';
 
-  let json = api.boa.run('boa-script.boa');
-  $('#loading').hide();
-  $('#content').show();
-  let count = 0;
-  let labels = [];
-  let dataset = [];
+// $('#content').hide();
+// let json = api.boa.run('boa-script.boa');
+// $('#loading').hide();
+// $('#content').show();
+// console.log(json);
 
-  for (let index in json.methodDetails)
+// for(let index in json.methodsDetails) {
+// 		$('#table-output-body').append('<tr><td><center> ${index} </center></td>')
+// }
+
+$('#table-output-body').append('<tr><td><center> xxx </center></td>')
+$('#table-output-body').append('<tr><td><center> xxx </center></td>')
+$('#table-output-body').append('<tr><td><center> xxx </center></td>')
+$('#table-output-body').append('<tr><td><center> xxx </center></td>')
+$('#table-output-body').append('<tr><td><center> xxx </center></td>')
+$('#table-output-body').append('<tr><td><center> xxx </center></td>')
+$('#table-output-body').append('<tr><td><center> xxx </center></td>')
+$('#table-output-body').append('<tr><td><center> xxx </center></td>')
+
+function insertInput()
+{
+  var items = {"hello": 2, "bye": 8};
+  var methodName = document.getElementById('searchbar').value;
+  // timesCalled = json.methodsDetails[methodName];
+  var timesCalled = items[methodName];
+  if (timesCalled != null)
   {
-    count++;
-    let label = $('#table-output-body').append(`<tr><td> ${count} </td> <td> ${index} </td> <td> ${json.methodDetails[index]} </td> </tr>`)
-    labels.push(index);
-    dataset.push(json.methodDetails[index]);
+    document.getElementById("results").innerHTML = methodName + " was called " + timesCalled + " times";
   }
-
-  let chartData =
+  else
   {
-			labels: labels,
-			datasets: [{
-			fillColor: '#ff8080',
-			strokeColor: '#bf6060',
-			data: dataset
-			}]
-	}
-
-  let canvas = document.createElement('canvas');
-  canvas.setAttribute('width', '400px');
-  canvas.setAttribute('height', '300px');
-  canvas.id = "chart-output";
-  $('#content').prepend(canvas);
-
-  let ctx = canvas.getContext('2d');
-  new Chart(ctx).Bar(chartData, { 'responsive': true, });
-
-});
+    document.getElementById("results").innerHTML = "The method " + methodName + " does not exist in this project. Please enter a new method.";
+  }
+}
