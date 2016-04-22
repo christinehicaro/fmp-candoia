@@ -1,14 +1,13 @@
 # get projects stats
 p: Project = input;
-
 methodsDetails: output sum[string] of int;
 
 visit(p, visitor {
     before node: Expression -> {
       if(node.kind == ExpressionKind.METHODCALL){
           if (node.method != ""){
-			     methodsDetails[node.method] << 1;
+    methodsDetails[node.method] << 1;
            }
       }
-	  }
+ }
 });

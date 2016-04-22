@@ -39,12 +39,31 @@
             <h3> Thank you for waiting. Now please enter a method name from the list above to see how many times it has been called in this project: </h3>
             <form method = "GET">
                 <input type = "text" id = "searchbar" name = "search" style = "width: 100px" value = "">
-                <input type="button"  height = "30" width = "30" value = "Go" onClick = "insertInput()">
+                <input type="button"  height = "30" width = "30" value = "Go" id = "clickButton">
             </form>
             <p id = results>
             </p>
           </div>
 
+          <!-- <script>
+            "use strict";
+            function insertInput()
+          	{
+              let json = api.boa.run("boa-script.boa");
+          	  // var items = {"hello": 2, "bye": 8};
+          	  var methodName = document.getElementById('searchbar').value;
+          	  var timesCalled = json.methodsDetails[methodName];
+          	  if (timesCalled != null)
+          	  {
+                console.log(timesCalled);
+          	    document.getElementById("results").innerHTML = methodName + " was called " + timesCalled + " times";
+          	  }
+          	  else
+          	  {
+          	    document.getElementById("results").innerHTML = "The method " + methodName + " does not exist in this project. Please enter a new method.";
+          	  }
+          	}
+          </script> -->
 
           </div>
         </center>
